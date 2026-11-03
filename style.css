@@ -1,0 +1,552 @@
+/* ---------- Tokens ---------- */
+:root {
+    color-scheme: light;
+    --bg: #f3f4fb;
+    --surface: #ffffff;
+    --surface-2: #eef0f8;
+    --text: #1b1c2e;
+    --muted: #6b6e8a;
+    --border: #e2e4f0;
+    --primary: #6c63ff;
+    --primary-hover: #5a51ee;
+    --danger: #e5484d;
+    --accent: #8b8fa8;
+    --shadow: 0 1px 2px rgba(20, 20, 50, 0.06), 0 8px 24px rgba(20, 20, 50, 0.06);
+    --radius: 16px;
+    --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #0e0f17;
+    --surface: #181a25;
+    --surface-2: #222537;
+    --text: #ecedf6;
+    --muted: #9a9db5;
+    --border: #2a2d40;
+    --primary: #8078ff;
+    --primary-hover: #968fff;
+    --danger: #ff6369;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* Note / swatch colors */
+[data-color="default"] { --accent: #8b8fa8; }
+[data-color="yellow"]  { --accent: #f5b301; }
+[data-color="green"]   { --accent: #2fb67c; }
+[data-color="blue"]    { --accent: #2f8cff; }
+[data-color="pink"]    { --accent: #ef5da8; }
+[data-color="purple"]  { --accent: #a05cf0; }
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    font-family: var(--font);
+    color: var(--text);
+    background:
+        radial-gradient(900px 400px at 10% -10%, color-mix(in srgb, var(--primary) 14%, transparent), transparent),
+        var(--bg);
+    transition: background-color 0.2s, color 0.2s;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.app {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px;
+}
+
+/* ---------- Top bar ---------- */
+.topbar {
+    position: sticky;
+    top: 12px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px 16px;
+    padding: 12px 16px;
+    background: color-mix(in srgb, var(--surface) 85%, transparent);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand h1 {
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+}
+
+.logo {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--primary), #b06cff);
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.badge {
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--surface-2);
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.search {
+    flex: 1 1 240px;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.search input {
+    width: 100%;
+    padding: 10px 16px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: var(--surface-2);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.search input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 25%, transparent);
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+    padding: 10px 16px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    transition: background-color 0.15s, transform 0.1s, opacity 0.15s;
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+}
+
+.btn-ghost {
+    background: transparent;
+    border-color: var(--border);
+}
+
+.btn-ghost:hover {
+    background: var(--surface-2);
+}
+
+.btn.danger {
+    color: var(--danger);
+}
+
+.btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.icon-btn {
+    display: inline-grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    font-size: 1.1rem;
+    transition: background-color 0.15s;
+}
+
+.icon-btn:hover {
+    background: var(--surface-2);
+}
+
+.icon-btn.danger:hover {
+    color: var(--danger);
+}
+
+.icon-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* ---------- Notes grid ---------- */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+    gap: 18px;
+    align-items: start;
+    margin-top: 20px;
+}
+
+.note {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 18px;
+    background: color-mix(in srgb, var(--accent) 9%, var(--surface));
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--accent);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: rise 0.25s ease both;
+}
+
+.note:hover {
+    transform: translateY(-3px);
+}
+
+.note-tools {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: flex;
+    transition: opacity 0.2s;
+}
+
+@media (hover: hover) {
+    .note-tools {
+        opacity: 0;
+    }
+
+    .note:hover .note-tools,
+    .note:focus-within .note-tools {
+        opacity: 1;
+    }
+}
+
+.note-title {
+    padding-right: 76px;
+    font-size: 1.1rem;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+.note-content {
+    color: color-mix(in srgb, var(--text) 82%, transparent);
+    line-height: 1.55;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.note-date {
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 0.78rem;
+}
+
+/* ---------- Empty state ---------- */
+.empty {
+    max-width: 360px;
+    margin: 60px auto;
+    padding: 32px 24px;
+    text-align: center;
+    background: var(--surface);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+}
+
+.empty-icon {
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+}
+
+.empty h2 {
+    margin-bottom: 6px;
+}
+
+.empty p {
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+/* ---------- Dialog ---------- */
+dialog {
+    width: min(480px, calc(100vw - 32px));
+    max-height: calc(100dvh - 32px);
+    margin: auto;
+    padding: 0;
+    overflow: auto;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: var(--surface);
+    color: var(--text);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+dialog[open] {
+    animation: pop 0.2s ease;
+}
+
+dialog::backdrop {
+    background: rgba(10, 10, 25, 0.55);
+    backdrop-filter: blur(6px);
+}
+
+#noteForm {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 22px;
+}
+
+.dialog-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+#noteForm>label {
+    margin-top: 6px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+#noteForm input[type="text"],
+#noteForm textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    background: var(--surface-2);
+    font-size: 1rem;
+    /* 16px stops iOS from zooming in */
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+#noteForm textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.5;
+}
+
+#noteForm input[type="text"]:focus,
+#noteForm textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 25%, transparent);
+}
+
+#noteForm input:user-invalid,
+#noteForm textarea:user-invalid {
+    border-color: var(--danger);
+}
+
+.colors {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+    border: none;
+}
+
+.colors legend {
+    float: left;
+    margin-right: 6px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.swatch-opt {
+    position: relative;
+    display: inline-flex;
+}
+
+.swatch-opt input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+}
+
+.swatch {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.swatch-opt:hover .swatch {
+    transform: scale(1.12);
+}
+
+.swatch-opt input:checked+.swatch {
+    box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--accent);
+}
+
+.swatch-opt input:focus-visible+.swatch {
+    outline: 2px solid var(--primary);
+    outline-offset: 4px;
+}
+
+.dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+/* ---------- Toast ---------- */
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    transform: translateX(-50%);
+    background: var(--text);
+    color: var(--bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    font-size: 0.9rem;
+    animation: rise 0.2s ease both;
+}
+
+.toast-btn {
+    padding: 2px 4px;
+    border: none;
+    background: none;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+:root[data-theme="dark"] .toast-btn {
+    color: #5a51ee;
+}
+
+/* ---------- Animations ---------- */
+@keyframes rise {
+    from {
+        opacity: 0;
+        translate: 0 8px;
+    }
+
+    to {
+        opacity: 1;
+        translate: 0 0;
+    }
+}
+
+@keyframes pop {
+    from {
+        opacity: 0;
+        scale: 0.94;
+    }
+
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 720px) {
+    .app {
+        padding: 10px;
+    }
+
+    .topbar {
+        top: 8px;
+        padding: 10px 12px;
+    }
+
+    .actions {
+        order: 2;
+    }
+
+    .search {
+        order: 3;
+        flex-basis: 100%;
+        max-width: none;
+    }
+
+    .brand {
+        flex: 1;
+    }
+
+    .grid {
+        gap: 14px;
+        margin-top: 14px;
+    }
+}
+
+@media (max-width: 420px) {
+    .btn {
+        padding: 9px 12px;
+    }
+}
